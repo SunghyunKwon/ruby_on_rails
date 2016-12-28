@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207000908) do
+ActiveRecord::Schema.define(version: 20161227064900) do
 
   create_table "bulletins", force: :cascade do |t|
     t.string   "title"
@@ -20,10 +20,12 @@ ActiveRecord::Schema.define(version: 20161207000908) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "title", comment: "글 제목"
+    t.text     "content",   comment: "글 내용"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "bulletin_id"
+    t.index ["bulletin_id"], name: "index_posts_on_bulletin_id", using: :btree
   end
 
 end
